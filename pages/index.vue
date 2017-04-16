@@ -1,5 +1,8 @@
 <template>
   <div>
+    <form @submit.prevent="add(task)">
+      <input v-model="task" type="text" />
+    </form>
     <article class="pa3 pa5-ns">
       <h1 class="f4 bold center mw6">Todos</h1>
       <ul class="list pl0 ml0 center mw6 ba b--light-silver br2">
@@ -12,16 +15,22 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapState, mapActions} from 'vuex'
 import axios from 'axios'
 
 export default {
   async fetch ({store, error}) {
     try {
-      const res = await axios.get('https://odos-syppxnrscv.now.sh/todos')
+      const res = await axios.get('https://todos-syppxnrscv.now.sh/todos')
       store.commit('init', res.data)
     } catch (err) {
       error({statusCode: 500, message: 'Oops, try again'})
+    }
+  },
+
+  data () {
+    return {
+      task: 'some task'
     }
   },
 
@@ -32,7 +41,9 @@ export default {
   },
 
   methods: {
-
+    ...mapActions([
+      'add'
+    ])
   }
 }
 </script>

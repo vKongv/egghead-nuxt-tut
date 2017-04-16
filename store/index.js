@@ -1,13 +1,21 @@
+import axios from 'axios'
+
 export const state = {
-  todos: [
-    {task: 'eat'},
-    {task: 'sleep'},
-    {task: 'code'}
-  ]
+  todos: []
 }
 
 export const mutations = {
   init (state, todos) {
     state.todos = todos
+  },
+  add (state, todo) {
+    state.todos = [...state.todos, todo]
+  }
+}
+
+export const actions = {
+  async add ({commit}, task) {
+    const res = await axios.post('https://todos-syppxnrscv.now.sh/todos', {task, completed: false})
+    commit('add', res.data)
   }
 }

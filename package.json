@@ -5,6 +5,7 @@
   "author": "Kong Ka Weng <mgongzai@gmail.com>",
   "private": true,
   "dependencies": {
+    "axios": "^0.16.1",
     "nuxt": "latest",
     "tachyons": "^4.7.0"
   },

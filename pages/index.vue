@@ -16,9 +16,13 @@ import {mapState} from 'vuex'
 import axios from 'axios'
 
 export default {
-  async fetch ({store}) {
-    const res = await axios.get('https://todos-syppxnrscv.now.sh/todos')
-    store.commit('init', res.data)
+  async fetch ({store, error}) {
+    try {
+      const res = await axios.get('https://odos-syppxnrscv.now.sh/todos')
+      store.commit('init', res.data)
+    } catch (err) {
+      error({statusCode: 500, message: 'Oops, try again'})
+    }
   },
 
   computed: {

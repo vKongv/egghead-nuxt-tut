@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav>
-      <nuxt-link to="/completed">Completed</nuxt-link>
+      <nuxt-link to="/">Home</nuxt-link>
     </nav>
     <form @submit.prevent="add(task)">
       <input v-model="task" type="text" />
